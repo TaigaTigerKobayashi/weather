@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>お天気</title>
+</head>
+<body>
+
+
+
+<script>
+    var appid = "dj00aiZpPUd4YWZjNW5tWDJXMyZzPWNvbnN1bWVyc2VjcmV0Jng9MTg-";
+    var coord = "139.411102,35.615841";
+
+    $.getJSON("http://weather.olp.yahooapis.jp/v1/place?callback=?&coordinates="+coord+"&output=jsonp&appid="+appid, function(data){
+        console.dir(data);
+
+        var d = data.Feature[0].Property.WeatherList.Weather[0].Date;
+        var r0 = data.Feature[0].Property.WeatherList.Weather[0].Rainfall;
+        var r1 = data.Feature[0].Property.WeatherList.Weather[1].Rainfall;
+        var r2 = data.Feature[0].Property.WeatherList.Weather[2].Rainfall;
+        var r3 = data.Feature[0].Property.WeatherList.Weather[3].Rainfall;
+        var r4 = data.Feature[0].Property.WeatherList.Weather[4].Rainfall;
+        var r5 = data.Feature[0].Property.WeatherList.Weather[5].Rainfall;
+        
+        $("#date").html("日付："+ d);
+        $("#rain0").html("降水強度予測値:今現在=" + r0 + "(mm/h)");
+        $("#rain1").html("降水強度予測値:10分後=" + r1 + "(mm/h)");
+        $("#rain2").html("降水強度予測値:20分後=" + r2 + "(mm/h)");
+        $("#rain3").html("降水強度予測値:30分後=" + r3 + "(mm/h)");
+        $("#rain4").html("降水強度予測値:40分後=" + r4 + "(mm/h)");
+        $("#rain5").html("降水強度予測値:50分後=" + r5 + "(mm/h)");
+
+    });
+
+
+
+
+</script>
+    
+</body>
+</html>
